@@ -14,6 +14,20 @@ function onReady() {
 // will be re-assigned based on operator click
 let operator;
 
+// this will take input values and display them with comment directions
+function getCalculations() {
+    $.ajax({ 
+        method: 'GET',
+        url: '/calc',
+    }).then(function(response) {
+        equationsArray = response;
+        updateChant();
+        displayCalcHistory();
+    })
+}; // end of function
+
+// object is created for AJAX to send to server
+// when equal is pressed it will give alert directions
 function equalButtonDo() {
     const calcToSend = {
         firstNumber: $('#firstNumber').val(),
@@ -40,6 +54,7 @@ $.ajax({
 
 }; // end of function
 
+// will display calculation in DOM and append clear button when over 2 calculations done
 function displayCalcHistory() {
     $('#history').empty();
     if (0 < equationsArray.length) {
@@ -66,6 +81,7 @@ function displayCalcHistory() {
     }
 }; // end of function
 
+// AJAX delete method
 function clearHistory() {
     console.log('deleting history 🤪');
     $.ajax({
@@ -75,26 +91,17 @@ function clearHistory() {
     
 }; // end of function
 
+// will clear result history
 function clearFromDom() {
     $('#clearHistoryButton').remove();
     equationsArray = [];
-    updateGreeting();
+    updateChant();
     displayCalcHistory();
 }; // end of function
 
-function getCalculations() {
-    $.ajax({ 
-        method: 'GET',
-        url: '/calc',
-    }).then(function(response) {
-        equationsArray = response;
-        updateGreeting();
-        displayCalcHistory();
-    })
-}; // end of function
-
+// chant directions display
 let equationsArray = [];
-function updateGreeting() {
+function updateChant() {
     if (1 == equationsArray.length) {
         $('#chanting').text('You lookin\' smarty-pants! 🥸👖');
     } else if (equationsArray.length >= 2) {
@@ -105,8 +112,7 @@ function updateGreeting() {
 
 }; // end of function
 
-
-
+// helps clear DOM buttons and inputs when c is pressed
 function clearButtonDo() {
     if (
         operator === '+' ||
@@ -132,7 +138,6 @@ function clearButtonDo() {
 } // end of function
 
 
-
 function processPost(res) {
     console.log('the response is: res', res);
     displayCalcHistory();
@@ -144,51 +149,48 @@ function processPostError() {
     alert('It sucks...');
 }; // end of function
 
+
+// selects button and changes operator
 function plusButtonDo() {
-    console.log($(this));
     operator = '+';
     console.log('operator changed to:', operator);
     $('#plus').css('background-color', 'blanchedalmond'); // selected
     $('#minus').css('background-color', 'black');
     $('#times').css('background-color', 'black');
     $('#divide').css('background-color', 'black');
-
     return;
 }; // end of function
 
+// selects button and changes operator
 function minusButtonDo() {
-    console.log($(this));
     operator = '-';
     console.log('operator changed to:', operator);
     $('#plus').css('background-color', 'black'); 
     $('#minus').css('background-color', 'blanchedalmond'); // selected
     $('#times').css('background-color', 'black');
     $('#divide').css('background-color', 'black');
-   
     return;
 }; // end of function
 
+// selects button and changes operator
 function timesButtonDo() {
-    console.log($(this));
     operator = 'x';
     console.log('operator changed to:', operator);
     $('#plus').css('background-color', 'black');
     $('#minus').css('background-color', 'black');
     $('#times').css('background-color', 'blanchedalmond'); // selected
     $('#divide').css('background-color', 'black');
-  
     return;
 }; // end of function
 
+// selects button and changes operator
 function divideButtonDo() {
-    console.log($(this));
     operator = '/';
     console.log('operator changed to:', operator);
     $('#plus').css('background-color', 'black'); 
     $('#minus').css('background-color', 'black');
     $('#times').css('background-color', 'black');
     $('#divide').css('background-color', 'blanchedalmond'); // selected
-    
     return;
 }; // end of function
 

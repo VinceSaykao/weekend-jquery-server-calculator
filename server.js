@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded( {
 // folder name is server/public
 app.use(express.static('server/public'));
 
-
+// setting array to empty, will be filled with calc results
 let calculationsArray = [];
 
 app.delete('/calc', (req,res) => {
@@ -34,31 +34,27 @@ app.post('/calc', (req,res) => {
 
 })
 
-function calculationMotherShip(calcData){ //doing math...
-  if(calcData.operator === '+'){ //if operator is plusButton, we add
+// this is the mothership function that will calculate inputs and operators
+function calculationMotherShip(calcData){ 
+  if(calcData.operator === '+'){ 
       calcData.product = parseInt(calcData.firstNumber) + parseInt(calcData.secondNumber);
   }
-  else if(calcData.operator === '-'){ //if operator is minus, we subtract
+  else if(calcData.operator === '-'){ 
       calcData.product = parseInt(calcData.firstNumber) - parseInt(calcData.secondNumber);
   }
-  else if(calcData.operator === 'x'){ //if operator is multiply, we multiply
+  else if(calcData.operator === 'x'){ 
       calcData.product = parseInt(calcData.firstNumber) * parseInt(calcData.secondNumber);
   }
-  else if(calcData.operator === '/'){ //if operator is divide, we divide 
+  else if(calcData.operator === '/'){ 
       calcData.product = parseInt(calcData.firstNumber) / parseInt(calcData.secondNumber);
   };
 }; // end of calcData
 
 app.get('/calc', (req, res) => {
   console.log('We have received reinforcement your majesty!');
-  // const equationToAdd = req.body;
-  // calculationsArray.push(equationToAdd);
-  // console.log(equationToAdd);
-  res.send(calculationsArray); //send the array to the client to do stuff with it (in thi case - see getTheMaths - function(response))
+
+  res.send(calculationsArray); 
 });
-
-
-
 
 
 // start up our server

@@ -12,30 +12,34 @@
  </head>
  <body>
    <header></header>
-   <img id ="greatdane" src="dogman.png">
-     <h1> Server Side Calculator</h1>
-     <div id="result">
-       <p>🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄</p>
-     </div>
-     <div id="inputs">
-     <input id="secondNumber" placeholder="Enter">
-     <input id="firstNumber" placeholder="Enter">
-     </div>
+    <img id ="greatdane" src="dogman.png">
+      <h1> Server Side Calculator</h1>
+      <!-- will hold current calculation result -->
+      <div id="result">
+        <p>🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄</p>
+      </div>
+
+      <div id="inputs">
+      <input id="secondNumber" placeholder="Enter">
+      <input id="firstNumber" placeholder="Enter">
+      </div>
+
         <div class="allButtonsInputs">
-        
-            <div class="holdButtons">
-             <button id="plus"  data-key="plus" data-type="operator" value="+">+</button>
-             <button id="minus" data-key="minus" data-type="operator" value="-">-</button>
-             <button id="times" data-key="times" data-type="operator" value="*">&times;</button>
-             <button id="divide" data-key="divide" data-type="operator" value="÷">÷</button>
-             <button id="equal" data-key="equal" data-type="equal" value="=">=</button>
-             <button id="c" data-key="c" data-type="clear">C</button>
+             <div class="holdButtons">
+                <button id="plus"  data-key="plus" data-type="operator" value="+">+</button>
+                <button id="minus" data-key="minus" data-type="operator" value="-">-</button>
+                <button id="times" data-key="times" data-type="operator" value="*">&times;</button>
+                <button id="divide" data-key="divide" data-type="operator" value="÷">÷</button>
+                <button id="equal" data-key="equal" data-type="equal" value="=">=</button>
+                <button id="c" data-key="c" data-type="clear">C</button>
              </div>
-        </div>
-     <h2 id="chanting"></h2>
-     <div id="history">
-  
-     </div>
+      </div>
+      
+    <!-- chants to give direction for user -->
+      <h2 id="chanting"></h2> 
+      <!-- div to hold history of results -->
+      <div id="history">
+      </div>
 
    
  </body>
