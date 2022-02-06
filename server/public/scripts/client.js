@@ -1,136 +1,199 @@
 $(document).ready(onReady);
 
 function onReady() {
+    $('#plus').on('click', plusButtonDo);
+    $('#minus').on('click', minusButtonDo);
+    $('#times').on('click', timesButtonDo);
+    $('#divide').on('click', divideButtonDo);
     $('#equal').on('click', equalButtonDo);
+    $('.allButtonsInputs').on('click', '#clearHistoryButton', clearHistory);
     $('#c').on('click', clearButtonDo);
-    $('#plus').on('click', addInputs);
-    $('#minus').on('click', subInputs);
+  
 }; // end of function
 
-allCalculation = [
-{
-    input1: $('#first-input').val(),
-    operator: operator,
-    input2: $('#second-input').val()
-}
-]
+// will be re-assigned based on operator click
+let operator;
 
+function equalButtonDo() {
+    const calcToSend = {
+        firstNumber: $('#firstNumber').val(),
+        operator: operator,
+        secondNumber: $('#secondNumber').val(),
+    }; // end of object
 
-// } // end of function
+    if (calcToSend.firstInput == '' && calcToSend.secondInput == '') {
+        alert(`This ain't gonna work buddy! 🤪`);
+        return;
+    } else if (calcToSend.firstNumber == '' || calcToSend.secondNumber == '') {
+        alert(`You've only got one number...`);
+    } else if (operator == undefined) {
+        alert(`Ope! You forgot to press an operator 👀`);
+        return;
+    }
+    console.log(calcToSend);
 
-function ajaxequalButtonDo() {
+$.ajax({
+    method: 'POST',
+    url: '/calc',
+    data: calcToSend
+}).then(processPost).catch(processPostError);
+
+}; // end of function
+
+function displayCalcHistory() {
+    $('#history').empty();
+    if (0 < equationsArray.length) {
+        $('#result').text(`
+        ${equationsArray[equationsArray.length - 1].firstNumber}
+        ${equationsArray[equationsArray.length - 1].operator}
+        ${equationsArray[equationsArray.length - 1].secondNumber}
+        =
+        ${equationsArray[equationsArray.length - 1].product}
+        `)
+    } else {
+        ($('#result')).empty(); 
+    }
+    if (1 < equationsArray.length) {
+        for (i=0;i<equationsArray.length - 1; i++) {
+            $('#history').prepend(`<li>${equationsArray[i].firstNumber}  ${equationsArray[i].operator}  ${equationsArray[i].secondNumber}  =  ${equationsArray[i].product}</li>`);
+        }
+    }
+
+    if (equationsArray.length > 1) {
+        if ($('#clearHistoryButton').length == 0) {
+            $('.allButtonsInputs').append(`<button id="clearHistoryButton">Clear All</button>`);
+        }
+    }
+}; // end of function
+
+function clearHistory() {
+    console.log('deleting history 🤪');
     $.ajax({
-        type: 'GET',
-        url: '/calc'
-    }).then (function (response) {
-        equalButtonDo();
-    })
+        method: 'DELETE',
+        url: '/calc',
+    }).then(clearFromDom);
+    
+}; // end of function
 
+function clearFromDom() {
+    $('#clearHistoryButton').remove();
+    equationsArray = [];
+    updateGreeting();
+    displayCalcHistory();
+}; // end of function
+
+function getCalculations() {
+    $.ajax({ 
+        method: 'GET',
+        url: '/calc',
+    }).then(function(response) {
+        equationsArray = response;
+        updateGreeting();
+        displayCalcHistory();
+    })
+}; // end of function
+
+let equationsArray = [];
+function updateGreeting() {
+    if (1 == equationsArray.length) {
+        $('#chanting').text('You lookin\' smarty-pants! 🥸👖');
+    } else if (equationsArray.length >= 2) {
+        $('#chanting').text('Result History is: ');
+    } else if (0 === equationsArray.length) {
+        $('#chanting').text('I\'m ready to rock n roll some Numbahs! 🎸');
+    }
+
+}; // end of function
+
+
+
+function clearButtonDo() {
+    if (
+        operator === '+' ||
+        operator === '-' ||
+        operator === 'x' ||
+        operator === '÷' 
+        
+       ) {
+           console.log(`Operator was: ${operator}`);
+           operator = operator[-1];
+           console.log(`Operator changed to: ${operator}`);
+           $('#firstNumber').val('');
+           $('#secondNumber').val('');
+           $('button').css('background-color', 'black')
+           
+       } else {
+           console.log(`Operator changed to: ${operator}`);
+            $('#firstNumber').val('');
+            $('#secondNumber').val('');
+            $('#result').text('');
+            $('button').css('background-color', 'black')
+       }
 } // end of function
 
 
-function songs() {
-    $.ajax({
-        type: 'GET',
-        url: '/song'
-    }).then(function (response) {
-        for (let i = 0; i < response.length; i++) {
-            let song = response[i];
-            $('#songTableBody').append(`
-                <tr>
-                    <td>${song.title}</td>
-                    <td>${song.artist}</td>
-               
-                </tr>
-            `);
-        }
-    });
 
-    // TODO Add ajax request for /songs and display on DOM
-}
+function processPost(res) {
+    console.log('the response is: res', res);
+    displayCalcHistory();
+    clearButtonDo();
+    getCalculations();
+}; // end of function
 
-// when equal button is pressed, will calculate both inputs
-function equalButtonDo() {
-    ($('#first-input').val(''));
-    ($('#second-input').val(''));
-    if (sum > 0) {
-        $('#result').append('<div>',
-         sum
-         ,'</div>');
-     } else if (sum === null) {
-         console.log('found null');
-     } else if (sub >= 0) {
-        $('#result').append('<div>',
-        sub
-        ,'</div>');
+function processPostError() {
+    alert('It sucks...');
+}; // end of function
 
-     } else if (sub === null) {
-        return console.log('found null')
-    }  else if (tim >= 0) {
-        $('#result').append('<div>',
-        tim
-        ,'</div>');
-    } 
-  
-         
-    addInputs();
-    subInputs();
+function plusButtonDo() {
+    console.log($(this));
+    operator = '+';
+    console.log('operator changed to:', operator);
+    $('#plus').css('background-color', 'blanchedalmond'); // selected
+    $('#minus').css('background-color', 'black');
+    $('#times').css('background-color', 'black');
+    $('#divide').css('background-color', 'black');
+
+    return;
+}; // end of function
+
+function minusButtonDo() {
+    console.log($(this));
+    operator = '-';
+    console.log('operator changed to:', operator);
+    $('#plus').css('background-color', 'black'); 
+    $('#minus').css('background-color', 'blanchedalmond'); // selected
+    $('#times').css('background-color', 'black');
+    $('#divide').css('background-color', 'black');
    
+    return;
+}; // end of function
+
+function timesButtonDo() {
+    console.log($(this));
+    operator = 'x';
+    console.log('operator changed to:', operator);
+    $('#plus').css('background-color', 'black');
+    $('#minus').css('background-color', 'black');
+    $('#times').css('background-color', 'blanchedalmond'); // selected
+    $('#divide').css('background-color', 'black');
+  
+    return;
+}; // end of function
+
+function divideButtonDo() {
+    console.log($(this));
+    operator = '/';
+    console.log('operator changed to:', operator);
+    $('#plus').css('background-color', 'black'); 
+    $('#minus').css('background-color', 'black');
+    $('#times').css('background-color', 'black');
+    $('#divide').css('background-color', 'blanchedalmond'); // selected
     
-    
-}; // end of function 
-
- // ($('#first-input').val())
-
-// this will clear the results and input fields
-function clearButtonDo() {
-    $('#result').empty();
-    ($('#first-input').val(''));
-    ($('#second-input').val(''));
+    return;
 }; // end of function
 
-// this will add both inputs together
-function addInputs() {
-    sum = null;
-    a = Number(($('#first-input').val()));
-    b = Number(($('#second-input').val()));
-    sum = (a + b);
-    console.log(sum);
-    
- 
 
 
-}; // end of function
-
-// this will subtract both inputs together
-function subInputs() {
-    sub = null;
-    a = Number(($('#first-input').val()));
-    b = Number(($('#second-input').val()))
-    sub = (a - b);
-    console.log(sub);
-    return sub;
-}; // end of function
-
-// this will subtract both inputs together
-function timesInputs() {
-    sub = null;
-    a = Number(($('#first-input').val()));
-    b = Number(($('#second-input').val()))
-    tim = (a * b);
-    console.log(tim);
-    return tim;
-}; // end of function
-
-// this will subtract both inputs together
-function dividInputs() {
-    sub = null;
-    a = Number(($('#first-input').val()));
-    b = Number(($('#second-input').val()))
-    div = (a / b);
-    console.log(div);
-    return div;
-}; // end of function
 
 
 

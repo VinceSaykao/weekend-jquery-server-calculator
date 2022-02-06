@@ -1,8 +1,101 @@
 
+:root {
+  
+               background-image: linear-gradient(236deg, #f008dc, rgb(4, 3, 5), #04cbfd);
+               height: 1000px;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+}
+
+body {
+  align-content: center;
+  justify-content: center;
+
+}
 
 
-.container {
-   
+
+h1 {
+  font-size: 100px;
+  color: #fff;
+  text-shadow: 0 0 20px rgb(0, 217, 255);
+}
+
+::placeholder {
+  background-image: linear-gradient(236deg, #f008dc, #04cbfd);
+  text-align: center;
+  line-height: 30px;
+  font-size: 30px;
+
+  background-color: black;
+  color: #fff;
+  text-shadow: 0 0 10px #03bcf4,
+               0 0 20px #03bcf4,
+               0 0 40px #03bcf4,
+               0 0 80px #03bcf4,
+               0 0 160px #03bcf4;
+            
+
+}
+
+#equal {
+  width: 100px;
+}
+
+#inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px ;
+}
+
+#result {
+  font-size: 80px;
+  background-color: black;
+  color: #fff;
+  text-shadow: 0 0 10px #03bcf4,
+               0 0 20px #03bcf4,
+               0 0 40px #03bcf4,
+               0 0 80px #03bcf4,
+               0 0 160px #03bcf4;
+               text-align: right;
+               
+}
+
+#chanting {
+  color: #fff;
+  text-shadow: 0 0 10px #03bcf4,
+               0 0 20px #03bcf4,
+               0 0 40px #03bcf4,
+               0 0 80px #03bcf4,
+               0 0 160px #03bcf4;
+               text-align: center;
+               margin: 20px;
+}
+
+.allButtonsInputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+input {
+  line-height: 30px;
+  color: #fff;
+  background: black;
+  text-shadow: 0 0 10px #03bcf4,
+  0 0 20px #03bcf4,
+  0 0 40px #03bcf4,
+  0 0 80px #03bcf4,
+  0 0 160px #03bcf4;
+}
+
+
+
+
+button {
   font-size: 30px;
   color: #fff;
   text-shadow: 0 0 10px #03bcf4,
@@ -10,138 +103,51 @@
                0 0 40px #03bcf4,
                0 0 80px #03bcf4,
                0 0 160px #03bcf4;
+               line-height: 30px;
+               border-radius: 100px;
+               background-color: black;
+             
 }
 
-body {
-  display: flex;
-  background-image: linear-gradient(236deg, #f008dc, #04cbfd);
-  justify-content: left;
-  align-items: left;
-  height: 1000px;
+
+#equal,#c {
+  background-image: linear-gradient(236deg, #f008dc, rgb(4, 3, 5), #04cbfd);
 }
 
-.calculator {
-  box-shadow: 0 0 25px 0 rgb(5, 198, 252);
-  border-radius: 80px;
-  overflow: hidden;
-}
-
-.calculator__display {
-  background-color: rgb(4, 34, 58);
-  color: var(--grey-050);
-  width: 600px;
-  height: 150px;
-  padding: 0.75rem 1rem;
-  text-align: right;
-  font-size: 140px;
-  border-top-left-radius: 50px;
-  border-top-right-radius: 50px;
-}
-
-.calculator__keys {
-  background: black;
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-template-areas:
-    ". . . ."
-    "seven eight nine equal"
-    "four five six equal"
-    "one two three equal"
-    "zero decimal clear equal";
-}
-
-.calculator__keys , button {
-  border-radius: 1px;
-  font-size: 60px;
-
+li {
+  list-style-type:none;
   color: #fff;
   text-shadow: 0 0 10px #03bcf4,
                0 0 20px #03bcf4,
                0 0 40px #03bcf4,
                0 0 80px #03bcf4,
                0 0 160px #03bcf4;
-
+               text-align: center;
 }
 
-[data-key="1"] {
-  grid-area: one;
+@keyframes animate 
+{
+    0%,18%,20%,50.1%,60%,65.1%,80%,90.1%,92%
+        {
+            color: #0e3742;
+            box-shadow:none;
+        }
+    18.1%,20.1%,30%,50%,60.1%,65%,80.1%,90%,92.1%,100%
+{
+    color: #fff;
+    text-shadow: 0 0 10px #03bcf4,
+                 0 0 20px #03bcf4,
+                 0 0 40px #03bcf4,
+                 0 0 80px #03bcf4,
+                 0 0 160px #03bcf4;
+}
 }
 
-[data-key="2"] {
-  grid-area: two;
-}
 
-[data-key="3"] {
-  grid-area: three;
-}
 
-[data-key="4"] {
-  grid-area: four;
-}
 
-[data-key="5"] {
-  grid-area: five;
-}
 
-[data-key="6"] {
-  grid-area: six;
-}
 
-[data-key="7"] {
-  grid-area: seven;
-}
 
-[data-key="8"] {
-  grid-area: eight;
-}
-
-[data-key="9"] {
-  grid-area: nine;
-}
-
-[data-key="0"] {
-  grid-area: zero;
-}
-.decimal {
-  grid-area: decimal;
-}
-.clear {
-  grid-area: clear;
-}
-
-[data-key="equal"] {
-  grid-area: equal;
-  background-color: orangered;
-}
-
-[data-key="equal"]:active {
-  background-color: #fff;
-}
-
-[data-type="operator"] {
-  background: rgb(45, 179, 145);
-  line-height: 50px;
-
-}
-
-[data-type="number"],
-[data-type="clear"] {
-  background: rgb(3, 48, 78);
-}
-
-[data-type="operator"]:active,
-[data-type="number"]:active,
-[data-type="clear"]:active {
-  background: #fff;
-}
-
-[data-state="selected"] {
-  background: grey;
-}
-button {
-  padding: 15px 15px;
-  line-height: 80px;
-
-}
 
 

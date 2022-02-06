@@ -11,47 +11,31 @@
      <title>Weekend-Calculator-Challenge</title>
  </head>
  <body>
-     <h1>Server Side Calculator</h1>
-         <input id="first-input" placeholder="Enter">
-             <button id="plus" value="+">+</button>
-             <button id="minus" value="-">-</button>
-             <button id="times" value="*">*</button>
-             <button id="divide" value="/">/</button>
-             <input id="second-input" placeholder="Enter">
-             <button id="equal" value="">=</button>
-         <button id="c">C</button>
-
+   <header></header>
+     <h1> Server Side Calculator</h1>
      <div id="result">
+       <p>🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄</p>
      </div>
-
-     <div id="history">
+     <div id="inputs">
+     <input id="secondNumber" placeholder="Enter">
+     <input id="firstNumber" placeholder="Enter">
      </div>
-
-
-     <div class="container">
-      <div class="calculator">
-        <div class="calculator__display">0</div>
-        <div class="calculator__keys">
-          <button data-key="plus" data-type="operator">+</button>
-          <button data-key="minus" data-type="operator">-</button>
-          <button data-key="times" data-type="operator">&times;</button>
-          <button data-key="divide" data-type="operator">÷</button>
-          <button data-key="1" data-type="number">1</button>
-          <button data-key="2" data-type="number">2</button>
-          <button data-key="3" data-type="number">3</button>
-          <button data-key="4" data-type="number">4</button>
-          <button data-key="5" data-type="number">5</button>
-          <button data-key="6" data-type="number">6</button>
-          <button data-key="7" data-type="number">7</button>
-          <button data-key="8" data-type="number">8</button>
-          <button data-key="9" data-type="number">9</button>
-          <button data-key="0" data-type="number">0</button>
-          <button class="decimal" data-type="number">.</button>
-          <button class="clear" data-type="clear">C</button>
-          <button data-key="equal" data-type="equal">=</button>
+        <div class="allButtonsInputs">
+        
+            <div class="holdButtons">
+             <button id="plus"  data-key="plus" data-type="operator" value="+">+</button>
+             <button id="minus" data-key="minus" data-type="operator" value="-">-</button>
+             <button id="times" data-key="times" data-type="operator" value="*">&times;</button>
+             <button id="divide" data-key="divide" data-type="operator" value="÷">÷</button>
+             <button id="equal" data-key="equal" data-type="equal" value="=">=</button>
+             <button id="c" data-key="c" data-type="clear">C</button>
+             </div>
         </div>
-      </div>
-    </div>
+     <h2 id="chanting"></h2>
+     <div id="history">
+  
+     </div>
 
+   
  </body>
  </html> 
