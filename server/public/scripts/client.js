@@ -29,7 +29,7 @@ function equalButtonDo() {
         alert(`This ain't gonna work buddy! 🤪`);
         return;
     } else if (calcToSend.firstNumber == '' || calcToSend.secondNumber == '') {
-        alert(`You've only got one number...`);
+        alert(`You've done messed up A-Aron!`);
     } else if (operator == undefined) {
         alert(`Ope! You forgot to press an operator 👀`);
         return;
