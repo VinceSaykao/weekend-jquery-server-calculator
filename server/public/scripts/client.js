@@ -156,7 +156,7 @@ function processPostError() { //error if something is wrong with POST....
 function plusButtonDo() {
     operator = '+';
     console.log('operator changed to:', operator);
-    $('#plus').css('background-color', 'blanchedalmond'); // selected
+    $('#plus').css('background-color', '#f008dc'); // selected
     $('#minus').css('background-color', 'black');
     $('#times').css('background-color', 'black');
     $('#divide').css('background-color', 'black');
@@ -168,7 +168,7 @@ function minusButtonDo() {
     operator = '-';
     console.log('operator changed to:', operator);
     $('#plus').css('background-color', 'black'); 
-    $('#minus').css('background-color', 'blanchedalmond'); // selected
+    $('#minus').css('background-color', '#f008dc'); // selected
     $('#times').css('background-color', 'black');
     $('#divide').css('background-color', 'black');
     return;
@@ -180,7 +180,7 @@ function timesButtonDo() {
     console.log('operator changed to:', operator);
     $('#plus').css('background-color', 'black');
     $('#minus').css('background-color', 'black');
-    $('#times').css('background-color', 'blanchedalmond'); // selected
+    $('#times').css('background-color', '#f008dc'); // selected
     $('#divide').css('background-color', 'black');
     return;
 }; // end of function
@@ -192,7 +192,7 @@ function divideButtonDo() {
     $('#plus').css('background-color', 'black'); 
     $('#minus').css('background-color', 'black');
     $('#times').css('background-color', 'black');
-    $('#divide').css('background-color', 'blanchedalmond'); // selected
+    $('#divide').css('background-color', '#f008dc'); // selected
     return;
 }; // end of function
 
