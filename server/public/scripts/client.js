@@ -14,17 +14,7 @@ function onReady() {
 // will be re-assigned based on operator click
 let operator;
 
-// this will take input values and display them with comment directions
-function getCalculations() {
-    $.ajax({ 
-        method: 'GET',
-        url: '/calc',
-    }).then(function(response) {
-        equationsArray = response;
-        updateChant();
-        displayCalcHistory();
-    })
-}; // end of function
+
 
 // object is created for AJAX to send to server
 // when equal is pressed it will give alert directions
@@ -52,6 +42,18 @@ $.ajax({
     data: calcToSend
 }).then(processPost).catch(processPostError);
 
+}; // end of function
+
+// AJAX makes a request with server using GET method
+function getCalculations() {
+    $.ajax({ 
+        method: 'GET',
+        url: '/calc',
+    }).then(function(response) { // telling us server received information, then it will 
+        equationsArray = response; // the data from server is filling the equationsArray 
+        updateChant();
+        displayCalcHistory();
+    })
 }; // end of function
 
 // will display calculation in DOM and append clear button when over 2 calculations done
@@ -138,14 +140,14 @@ function clearButtonDo() {
 } // end of function
 
 
-function processPost(res) {
+function processPost(res) { // res from POST
     console.log('the response is: res', res);
     displayCalcHistory();
-    clearButtonDo();
+    clearButtonDo(); // calling function to clear inputs and operators
     getCalculations();
 }; // end of function
 
-function processPostError() {
+function processPostError() { //error if something is wrong with POST....
     alert('It sucks...');
 }; // end of function
 
